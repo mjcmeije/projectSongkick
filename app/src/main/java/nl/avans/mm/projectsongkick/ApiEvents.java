@@ -16,7 +16,8 @@ import java.net.URLConnection;
 
 public class ApiEvents extends AsyncTask<String, Void, String> {
 		
-		private Listener listener = null;
+	private Listener listener = null;
+	private static final String TAG = "ApiEvents";
 				
 		public ApiEvents(Listener listener) {
 			this.listener = listener;
@@ -60,6 +61,7 @@ public class ApiEvents extends AsyncTask<String, Void, String> {
 		
 		@Override
 		protected void onPostExecute(String response) {
+			Log.i(TAG, response);
 			if ((response == null) || (response.equalsIgnoreCase(""))) {
 				listener.noConnectionAvailable();
 				return;
@@ -71,10 +73,10 @@ public class ApiEvents extends AsyncTask<String, Void, String> {
 				jsonObject = new JSONObject(response);
 				
 				// Get all products and start looping
-				JSONArray results = jsonObject.getJSONArray("results");
-				for(int idx = 0; idx < results.length(); idx++) {
+				JSONArray event1 = jsonObject.getJSONArray("event");
+				for(int idx = 0; idx < event1.length(); idx++) {
 					// array level objects and get product
-					JSONObject thisEvent = results.getJSONObject(idx);
+					JSONObject thisEvent = event1.getJSONObject(idx);
 					
 					String displayName = thisEvent.getString("displayName");
 					
