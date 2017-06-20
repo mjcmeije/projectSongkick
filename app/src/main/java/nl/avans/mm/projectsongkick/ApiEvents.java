@@ -72,8 +72,12 @@ public class ApiEvents extends AsyncTask<String, Void, String> {
 				// Top level json object
 				jsonObject = new JSONObject(response);
 				
+				JSONObject test = jsonObject.getJSONObject("resultsPage");
+				JSONObject test2 = test.getJSONObject("results");
+				
+				
 				// Get all products and start looping
-				JSONArray event1 = jsonObject.getJSONArray("event");
+				JSONArray event1 = test2.getJSONArray("event");
 				for(int idx = 0; idx < event1.length(); idx++) {
 					// array level objects and get product
 					JSONObject thisEvent = event1.getJSONObject(idx);
