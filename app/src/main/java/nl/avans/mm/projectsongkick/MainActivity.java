@@ -1,5 +1,7 @@
 package nl.avans.mm.projectsongkick;
 
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,11 +22,14 @@ public class MainActivity extends AppCompatActivity implements ApiEvents.Listene
 	private EventAdapter eventAdapter = null;
 	private EditText searchText = null;
 	private Button searchButton = null;
+	private MainScreenSectionsPagerAdapter sectionsPagerAdapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		sectionsPagerAdapter = new MainScreenSectionsPagerAdapter(getSupportFragmentManager(), getApplicationContext());
 		
 		searchText = (EditText) findViewById(R.id.searchText);
 		searchButton = (Button) findViewById(R.id.searchButton);
@@ -33,6 +38,12 @@ public class MainActivity extends AppCompatActivity implements ApiEvents.Listene
 		eventsListView = (ListView) findViewById(R.id.events_lv);
 		eventAdapter = new EventAdapter(getApplicationContext(), getLayoutInflater(), events); //fragmentListView_LV_reportsList
 		eventsListView.setAdapter(eventAdapter);
+		
+		ViewPager viewPager = (ViewPager) findViewById(R.id.container);
+		viewPager.setAdapter(sectionsPagerAdapter);
+		
+		TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+		tabLayout.setupWithViewPager(viewPager);
 //		getEvents();
 //		eventsListView.setOnItemClickListener(this);
 	}
@@ -54,13 +65,15 @@ public class MainActivity extends AppCompatActivity implements ApiEvents.Listene
 		String str = searchText.getText().toString();
 		Log.i(TAG, "Gezocht op: " + searchText);
 		ApiEvents apiEvents = new ApiEvents(this);
-		String[] urls = new String[] {" http://api.songkick.com/api/3.0/events.json?apikey=rX8RhAq6lkDw5OnK&artist_name=" + str};
+		String[] urls = new String[] {"http://api.songkick.com/api/3.0/search/artists.json?query=" + str + "&apikey=rX8RhAq6lkDw5OnK"};
 		apiEvents.execute(urls);
 	}
 	//  http://api.songkick.com/api/3.0/search/artists.json?query={search_query}&apikey=rX8RhAq6lkDw5OnK
 	//  http://api.songkick.com/api/3.0/metro_areas/31372/calendar.json?apikey=rX8RhAq6lkDw5OnK
 	//	http://api.songkick.com/api/3.0/events.json?apikey=rX8RhAq6lkDw5OnK&artist_name=Radiohead&type=festival
 	//  http://api.songkick.com/api/3.0/search/locations.json?query=breda&apikey=rX8RhAq6lkDw5OnK
+	//  http://api.songkick.com/api/3.0/events.json?apikey=rX8RhAq6lkDw5OnK&artist_name=" + str
+	
 	@Override
 	public void onEventAvailable(Event event) {
 		// Toevoegen array
