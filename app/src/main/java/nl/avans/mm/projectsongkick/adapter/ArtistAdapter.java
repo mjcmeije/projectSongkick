@@ -15,7 +15,7 @@ import nl.avans.mm.projectsongkick.domain.Artist;
 
 public class ArtistAdapter extends BaseAdapter {
 
-	private static final String TAG = EventAdapter.class.getSimpleName();
+	private final String TAG = getClass().getSimpleName();
 
 	private Context mContext;
 	private LayoutInflater mInflator;
@@ -68,7 +68,6 @@ public class ArtistAdapter extends BaseAdapter {
 
 		viewHolder.artistName.setText(artist.getName());
 
-		// Picasso.with(mContext).load(person.getImageUrl()).into(viewHolder.imageView);
 		return convertView;
 	}
 

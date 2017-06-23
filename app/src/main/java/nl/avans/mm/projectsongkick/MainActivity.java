@@ -1,5 +1,6 @@
 package nl.avans.mm.projectsongkick;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -17,6 +19,7 @@ import java.util.List;
 
 import nl.avans.mm.projectsongkick.adapter.ArtistAdapter;
 import nl.avans.mm.projectsongkick.domain.Artist;
+import nl.avans.mm.projectsongkick.presentation.ArtistActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, ArtistRequest.Listener {
 	
@@ -32,8 +35,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	private List<Artist> artists = new ArrayList<>();
 	private ArtistAdapter artistAdapter;
 
-	private EditText searchText = null;
-	private Button searchButton = null;
+	public static final String ARTIST = "artist";
+
+	private EditText searchText;
+	private Button searchButton;
 	private MainScreenSectionsPagerAdapter sectionsPagerAdapter;
 	
 	@Override
@@ -50,6 +55,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		artistListView = (ListView) findViewById(R.id.events_lv);
 		artistAdapter = new ArtistAdapter(getApplicationContext(), getLayoutInflater(), artists);
 		artistListView.setAdapter(artistAdapter);
+		artistListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				Intent intent = new Intent(getApplicationContext(), ArtistActivity.class);
+				intent.putExtra(ARTIST, artists.get(position));
+				startActivity(intent);
+			}
+		});
 
 		ViewPager viewPager = (ViewPager) findViewById(R.id.container);
 		viewPager.setAdapter(sectionsPagerAdapter);
