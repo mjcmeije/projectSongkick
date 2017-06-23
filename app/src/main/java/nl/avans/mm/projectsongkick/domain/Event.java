@@ -1,4 +1,4 @@
-package nl.avans.mm.projectsongkick;
+package nl.avans.mm.projectsongkick.domain;
 
 
 import java.io.Serializable;

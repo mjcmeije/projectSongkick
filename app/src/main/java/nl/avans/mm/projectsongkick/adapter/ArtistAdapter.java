@@ -6,7 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -29,9 +32,7 @@ public class ArtistAdapter extends BaseAdapter {
 
 	@Override
 	public int getCount() {
-		int size = artistList.size();
-		Log.i("getCount()", "=" + size);
-		return size;
+		return artistList.size();
 	}
 
 	@Override
@@ -58,21 +59,21 @@ public class ArtistAdapter extends BaseAdapter {
 
 			viewHolder = new ViewHolder();
 			viewHolder.artistName = (TextView) convertView.findViewById(R.id.listRowTvArtistName);
+			viewHolder.artistImage = (ImageView) convertView.findViewById(R.id.listRowIvArtistImage);
 
 			convertView.setTag(viewHolder);
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
-
 		Artist artist = (Artist) artistList.get(position);
-
 		viewHolder.artistName.setText(artist.getName());
-
+		Picasso.with(mContext).load(artist.getArtistImageUrl()).into(viewHolder.artistImage);
 		return convertView;
 	}
 
 	private static class ViewHolder {
 		public TextView artistName;
+		public ImageView artistImage;
 	}
 }
 

@@ -1,4 +1,4 @@
-package nl.avans.mm.projectsongkick;
+package nl.avans.mm.projectsongkick.api;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -13,6 +13,8 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+
+import nl.avans.mm.projectsongkick.domain.Event;
 
 public class ApiEvents extends AsyncTask<String, Void, String> {
 		

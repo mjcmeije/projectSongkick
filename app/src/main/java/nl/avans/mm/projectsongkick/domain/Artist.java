@@ -9,6 +9,8 @@ import java.io.Serializable;
 public class Artist implements Serializable {
 
 	private String name;
+	private String artistId;
+	private String artistImageUrl;
 
 	public String getName() {
 		return name;
@@ -16,5 +18,21 @@ public class Artist implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getArtistId() {
+		return artistId;
+	}
+
+	public void setArtistId(String artistId) {
+		this.artistId = artistId;
+	}
+
+	public String getArtistImageUrl() {
+		return artistImageUrl;
+	}
+
+	public void setArtistImageUrl(String artistImageUrl) {
+		this.artistImageUrl = artistImageUrl;
 	}
 }

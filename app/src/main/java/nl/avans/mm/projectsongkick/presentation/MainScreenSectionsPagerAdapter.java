@@ -1,10 +1,11 @@
-package nl.avans.mm.projectsongkick;
-
+package nl.avans.mm.projectsongkick.presentation;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import nl.avans.mm.projectsongkick.R;
 
 
 public class MainScreenSectionsPagerAdapter extends FragmentPagerAdapter {

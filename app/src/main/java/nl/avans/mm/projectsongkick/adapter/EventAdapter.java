@@ -1,17 +1,18 @@
-package nl.avans.mm.projectsongkick;
+package nl.avans.mm.projectsongkick.adapter;
 
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import nl.avans.mm.projectsongkick.domain.Event;
+import nl.avans.mm.projectsongkick.R;
 
 public class EventAdapter extends BaseAdapter {
 	

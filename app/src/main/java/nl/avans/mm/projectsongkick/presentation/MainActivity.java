@@ -1,4 +1,4 @@
-package nl.avans.mm.projectsongkick;
+package nl.avans.mm.projectsongkick.presentation;
 
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
@@ -17,9 +17,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import nl.avans.mm.projectsongkick.R;
+import nl.avans.mm.projectsongkick.api.ArtistRequest;
 import nl.avans.mm.projectsongkick.adapter.ArtistAdapter;
 import nl.avans.mm.projectsongkick.domain.Artist;
-import nl.avans.mm.projectsongkick.presentation.ArtistActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, ArtistRequest.Listener {
 	
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	private ListView artistListView;
 	private List<Artist> artists = new ArrayList<>();
 	private ArtistAdapter artistAdapter;
+	private String ArtistID;
 
 	public static final String ARTIST = "artist";
 
@@ -45,6 +47,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		// No shadow under action bar
+		getSupportActionBar().setElevation(0);
 
 		sectionsPagerAdapter = new MainScreenSectionsPagerAdapter(getSupportFragmentManager(), getApplicationContext());
 
@@ -81,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //		String[] urls = new String[]{"http://37.34.59.50/breda/CitySDK/requests.format?service_request_id=" + serviceRequestId};
 //		apiHomeScreen.execute(urls);
 //	}
-	
+
 	@Override
 	public void onClick(View v) {
 		artists.clear();
@@ -97,11 +102,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //	}
 
 	public void getArtist() {
-		String str = searchText.getText().toString();
-		Log.i(TAG, "Gezocht op: " + searchText);
+		String input = searchText.getText().toString();
+		Log.i(TAG, "Gezocht op: " + searchText.getText().toString());
 		ArtistRequest artistRequest = new ArtistRequest(this);
-		String[] urls = new String[] {"http://api.songkick.com/api/3.0/search/artists.json?query=" + str + "&apikey=rX8RhAq6lkDw5OnK"};
+		String[] urls = new String[] {"http://api.songkick.com/api/3.0/search/artists.json?query=" + input + "&apikey=rX8RhAq6lkDw5OnK"};
 		artistRequest.execute(urls);
+	}
+
+	public void getArtistImage() {
+
 	}
 
 	//  http://api.songkick.com/api/3.0/search/artists.json?query={search_query}&apikey=rX8RhAq6lkDw5OnK
@@ -113,7 +122,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	@Override
 	public void onArtistAvailable(Artist artist) {
 		artists.add(artist);
-		Log.i(TAG, "Artists: " + artist.getName());
+		ArtistID = artist.getArtistId();
+		String imageUrl = "https://assets.sk-static.com/images/media/profile_images/artists/"+ArtistID+"/huge_avatar";
+		artist.setArtistImageUrl(imageUrl);
+		Log.i(TAG, "Artists: " + artist.getName() + " & ArtistID: " + artist.getArtistId() + ", ArtistIamgeURL: " + artist.getArtistImageUrl());
 		artistAdapter.notifyDataSetChanged();
 	}
 
@@ -124,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //		Log.i(TAG, "Event added (" + event.getDisplayName() + ")");
 //		eventAdapter.notifyDataSetChanged();
 //	}
-	
+
 	@Override
 	public void noConnectionAvailable() {
 		Toast toast = Toast.makeText(this, "No connection available.", Toast.LENGTH_LONG);

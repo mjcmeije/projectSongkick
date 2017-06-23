@@ -1,4 +1,4 @@
-package nl.avans.mm.projectsongkick;
+package nl.avans.mm.projectsongkick.api;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -15,10 +15,6 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import nl.avans.mm.projectsongkick.domain.Artist;
-
-/**
- * Created by qsl on 23/06/2017.
- */
 
 public class ArtistRequest extends AsyncTask<String, Void, String> {
 
@@ -68,7 +64,7 @@ public class ArtistRequest extends AsyncTask<String, Void, String> {
 	protected void onPostExecute(String response) {
 		Log.i(TAG, response);
 		if ((response == null) || (response.equalsIgnoreCase(""))) {
-			listener.noConnectionAvailable();
+//			listener.noConnectionAvailable();
 			return;
 		}
 
@@ -92,11 +88,13 @@ public class ArtistRequest extends AsyncTask<String, Void, String> {
 				JSONObject artistObject = artistArray.getJSONObject(idx);
 
 				String displayName = artistObject.getString("displayName");
+				String artistId = artistObject.getString("id");
 
 				// Create new Artist
 				Artist artist = new Artist();
 
 				artist.setName(displayName);
+				artist.setArtistId(artistId);
 
 				// Callback
 				listener.onArtistAvailable(artist);

@@ -6,11 +6,17 @@
     android:layout_height="match_parent"
     android:padding="@dimen/layout_padding">
 
+    <ImageView
+        android:id="@+id/tvDetailArtistImage"
+        android:layout_width="200dp"
+        android:layout_height="200dp"/>
     <TextView
         android:id="@+id/tvDetailArtistName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/tvDetailArtistImage"
         android:padding="@dimen/tv_padding"
-        android:text="Artist name"/>
+        android:textSize="@dimen/detail_artist_name"
+        android:textStyle="bold"/>
 
 </RelativeLayout>
