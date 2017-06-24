@@ -25,6 +25,7 @@ import nl.avans.mm.projectsongkick.domain.Artist;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, ArtistRequest.Listener {
 	
 	private final String TAG = getClass().getSimpleName();
+	private static String input;
 
 	// Event related
 //	private ListView eventsListView = null;
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //		eventsListView.setOnItemClickListener(this);
 
 	}
-	
+
 //	public void getFavoriteReports(String serviceRequestId) {
 //		FavoriteReportManager.emptyArray();
 //		ApiHomeScreen apiHomeScreen = new ApiHomeScreen(this, this);
@@ -102,15 +103,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //	}
 
 	public void getArtist() {
-		String input = searchText.getText().toString();
-		Log.i(TAG, "Gezocht op: " + searchText.getText().toString());
+		input = searchText.getText().toString();
+		Log.i(TAG, "Gezocht op: " + input);
 		ArtistRequest artistRequest = new ArtistRequest(this);
 		String[] urls = new String[] {"http://api.songkick.com/api/3.0/search/artists.json?query=" + input + "&apikey=rX8RhAq6lkDw5OnK"};
 		artistRequest.execute(urls);
-	}
-
-	public void getArtistImage() {
-
 	}
 
 	//  http://api.songkick.com/api/3.0/search/artists.json?query={search_query}&apikey=rX8RhAq6lkDw5OnK

@@ -15,21 +15,24 @@
         app:tabMaxWidth="0dp"
         app:tabGravity="fill"
         app:tabMode="fixed"
-        app:tabBackground="@color/colorPrimary"
+        app:tabBackground="@color/colorDarkText"
         app:tabIndicatorColor="@color/colorAccent"
         app:tabSelectedTextColor="@color/colorAccent"
         app:tabTextColor="@color/colorLightText" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/colorDarkText">
 
         <EditText
             android:id="@+id/searchText"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="4"
-            android:hint="Zoek op artiest ....."/>
+            android:textColor="@color/colorLightText"
+            android:hint="Zoek op artiest ....."
+            android:textColorHint="@color/colorLightText" />
 
         <Button
             android:id="@+id/searchButton"
@@ -44,12 +47,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="7"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <ListView
             android:id="@+id/events_lv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/colorDarkText">
         </ListView>
 
         <TextView android:id="@id/android:empty"
