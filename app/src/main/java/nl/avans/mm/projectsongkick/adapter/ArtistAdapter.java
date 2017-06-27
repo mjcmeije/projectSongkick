@@ -106,7 +106,7 @@ public class ArtistAdapter extends ArrayAdapter<Artist> {
 //		TextView status = (TextView) convertViewInitial.findViewById(R.id.fragmentListViewRow_TV_status);
 //		TextView category = (TextView) convertViewInitial.findViewById(R.id.fragmentListViewRow_TV_category);
 		TextView artistName = (TextView) convertViewInitial.findViewById(R.id.listRowTvArtistName);
-		ImageView artistImage = (ImageView) convertView.findViewById(R.id.listRowIvArtistImage);
+		ImageView artistImage = (ImageView) convertViewInitial.findViewById(R.id.listRowIvArtistImage);
 		
 		// Get and set content
 		artistName.setText(artist.getName());

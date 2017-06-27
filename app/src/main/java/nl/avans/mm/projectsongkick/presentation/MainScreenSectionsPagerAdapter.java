@@ -13,6 +13,7 @@ public class MainScreenSectionsPagerAdapter extends FragmentPagerAdapter {
 	private Context context;
 	private MainScreenArtistsFragment tab1;
 	private MainScreenLocationsFragment tab2;
+	private MainScreenEventsFragment tab3;
 	//================================================================================
 	// Constructors
 	//================================================================================
@@ -37,6 +38,10 @@ public class MainScreenSectionsPagerAdapter extends FragmentPagerAdapter {
 				tab2 = new MainScreenLocationsFragment();
 				return tab2;
 			
+			case 2:
+				tab3 = new MainScreenEventsFragment();
+				return tab3;
+			
 			default:
 				return null;
 		}
@@ -54,13 +59,18 @@ public class MainScreenSectionsPagerAdapter extends FragmentPagerAdapter {
 		return tab2;
 	}
 	
+
 	public Fragment getTab2() {
 		return tab2;
 	}
 	
+	public Fragment getTab3() {
+		return tab3;
+	}
+	
 	@Override
 	public int getCount() {
-		return 2;
+		return 3;
 	}
 	
 	@Override
@@ -70,6 +80,8 @@ public class MainScreenSectionsPagerAdapter extends FragmentPagerAdapter {
 				return context.getResources().getString(R.string.homescreen_left_tab);
 			case 1:
 				return context.getResources().getString(R.string.homescreen_right_tab);
+			case 2:
+				return context.getResources().getString(R.string.homescreen_events_tab);
 			default:
 				break;
 		}

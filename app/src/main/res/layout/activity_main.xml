@@ -10,7 +10,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/colorDarkText">
 
         <EditText
             android:layout_width="0dp"
@@ -45,7 +46,8 @@
             android:id="@+id/artists_lv"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2">
+            android:layout_weight="0"
+            android:background="@color/colorDarkText">
         </ListView>
 
         <!--<TextView-->
@@ -59,7 +61,8 @@
             android:id="@+id/container"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="2"
-            android:layout_gravity="bottom"/>
+            android:background="@color/colorDarkText"
+            android:layout_gravity="bottom"
+            android:layout_weight="2"/>
     </LinearLayout>
 </LinearLayout>
