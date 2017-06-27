@@ -8,65 +8,61 @@
     tools:context="nl.avans.mm.projectsongkick.presentation.MainActivity"
     android:orientation="vertical">
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:tabMaxWidth="0dp"
-        app:tabGravity="fill"
-        app:tabMode="fixed"
-        app:tabBackground="@color/colorDarkText"
-        app:tabIndicatorColor="@color/colorAccent"
-        app:tabSelectedTextColor="@color/colorAccent"
-        app:tabTextColor="@color/colorLightText" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorDarkText">
 
         <EditText
-            android:id="@+id/searchText"
             android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="4"
-            android:textColor="@color/colorLightText"
-            android:hint="Zoek op artiest ....."
-            android:textColorHint="@color/colorLightText" />
+            android:layout_height="70dp"
+            android:layout_weight="3"
+            android:id="@+id/searchText"
+
+            android:hint="Zoek op artiest ....."/>
 
         <Button
-            android:id="@+id/searchButton"
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="70dp"
             android:layout_weight="2"
+            android:id="@+id/searchButton"
             android:text="ZOEKEN"/>
 
     </LinearLayout>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="7"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <ListView
-            android:id="@+id/events_lv"
+            android:id="@+id/artists_lv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0"
             android:background="@color/colorDarkText">
         </ListView>
 
-        <TextView android:id="@id/android:empty"
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:background="#FF0000"
-                  android:text="No data"/>
+        <!--<TextView-->
+        <!--android:id="@id/android:empty"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="#FF0000"-->
+        <!--android:text="No data"/>-->
 
         <android.support.v4.view.ViewPager
             android:id="@+id/container"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"/>
+            android:layout_height="0dp"
+            android:background="@color/colorDarkText"
+            android:layout_gravity="bottom"
+            android:layout_weight="2"/>
     </LinearLayout>
 </LinearLayout>

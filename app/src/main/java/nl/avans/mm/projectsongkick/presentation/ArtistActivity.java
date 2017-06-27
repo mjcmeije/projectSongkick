@@ -12,6 +12,7 @@ import nl.avans.mm.projectsongkick.R;
 import nl.avans.mm.projectsongkick.domain.Artist;
 
 import static nl.avans.mm.projectsongkick.presentation.MainActivity.ARTIST;
+import static nl.avans.mm.projectsongkick.presentation.MainScreenArtistsFragment.EXTRA_ARTIST;
 
 public class ArtistActivity extends AppCompatActivity {
 
@@ -24,7 +25,7 @@ public class ArtistActivity extends AppCompatActivity {
 		getSupportActionBar().setElevation(0);
 
 		Bundle bundle = getIntent().getExtras();
-		Artist artist = (Artist) bundle.getSerializable(ARTIST);
+		Artist artist = (Artist) bundle.getSerializable(EXTRA_ARTIST);
 
 		TextView artistTv = (TextView) findViewById(R.id.tvDetailArtistName);
 		ImageView artistImage = (ImageView) findViewById(R.id.tvDetailArtistImage);

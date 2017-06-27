@@ -20,6 +20,7 @@ import java.util.List;
 import nl.avans.mm.projectsongkick.R;
 import nl.avans.mm.projectsongkick.api.ArtistRequest;
 import nl.avans.mm.projectsongkick.adapter.ArtistAdapter;
+import nl.avans.mm.projectsongkick.businesslogic.ArtistManager;
 import nl.avans.mm.projectsongkick.domain.Artist;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, ArtistRequest.Listener {
@@ -58,18 +59,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		searchButton = (Button) findViewById(R.id.searchButton);
 		searchButton.setOnClickListener(this);
 
-		artistListView = (ListView) findViewById(R.id.events_lv);
-		artistAdapter = new ArtistAdapter(getApplicationContext(), getLayoutInflater(), artists);
-		artistListView.setAdapter(artistAdapter);
-		artistListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Intent intent = new Intent(getApplicationContext(), ArtistActivity.class);
-				intent.putExtra(ARTIST, artists.get(position));
-				startActivity(intent);
-			}
-		});
-
 		ViewPager viewPager = (ViewPager) findViewById(R.id.container);
 		viewPager.setAdapter(sectionsPagerAdapter);
 
@@ -90,7 +79,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 	@Override
 	public void onClick(View v) {
-		artists.clear();
 		getArtist();
 	}
 
@@ -103,11 +91,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //	}
 
 	public void getArtist() {
+		ArtistManager.emptyArray();
 		input = searchText.getText().toString();
 		Log.i(TAG, "Gezocht op: " + input);
 		ArtistRequest artistRequest = new ArtistRequest(this);
 		String[] urls = new String[] {"http://api.songkick.com/api/3.0/search/artists.json?query=" + input + "&apikey=rX8RhAq6lkDw5OnK"};
 		artistRequest.execute(urls);
+		searchText.setText("");
 	}
 
 	//  http://api.songkick.com/api/3.0/search/artists.json?query={search_query}&apikey=rX8RhAq6lkDw5OnK
@@ -118,12 +108,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 	@Override
 	public void onArtistAvailable(Artist artist) {
-		artists.add(artist);
+		ArtistManager.addArtist(artist);
 		ArtistID = artist.getArtistId();
 		String imageUrl = "https://assets.sk-static.com/images/media/profile_images/artists/"+ArtistID+"/huge_avatar";
 		artist.setArtistImageUrl(imageUrl);
 		Log.i(TAG, "Artists: " + artist.getName() + " & ArtistID: " + artist.getArtistId() + ", ArtistIamgeURL: " + artist.getArtistImageUrl());
-		artistAdapter.notifyDataSetChanged();
+		sectionsPagerAdapter.getListFragment().addArtistsToList();
 	}
 
 //	@Override
