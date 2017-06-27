@@ -46,11 +46,11 @@ public class MainScreenSectionsPagerAdapter extends FragmentPagerAdapter {
 		return tab1;
 	}
 	
-	public MainScreenArtistsFragment getMapFragment() {
+	public MainScreenArtistsFragment getListFragment() {
 		return tab1;
 	}
 	
-	public MainScreenLocationsFragment getListFragment() {
+	public MainScreenLocationsFragment getMapFragment() {
 		return tab2;
 	}
 	
