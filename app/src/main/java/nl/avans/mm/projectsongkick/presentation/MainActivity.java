@@ -93,11 +93,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	public void getArtist() {
 		ArtistManager.emptyArray();
 		input = searchText.getText().toString();
-		Log.i(TAG, "Gezocht op: " + input);
-		ArtistRequest artistRequest = new ArtistRequest(this);
-		String[] urls = new String[] {"http://api.songkick.com/api/3.0/search/artists.json?query=" + input + "&apikey=rX8RhAq6lkDw5OnK"};
-		artistRequest.execute(urls);
-		searchText.setText("");
+		if(input.isEmpty()) {
+			searchText.setHint("Voer een zoekopdracht in");
+		} else {
+			Log.i(TAG, "Gezocht op: " + input);
+			ArtistRequest artistRequest = new ArtistRequest(this);
+			String[] urls = new String[]{"http://api.songkick.com/api/3.0/search/artists.json?query=" + input + "&apikey=rX8RhAq6lkDw5OnK"};
+			artistRequest.execute(urls);
+			searchText.setText("");
+		}
 	}
 
 	//  http://api.songkick.com/api/3.0/search/artists.json?query={search_query}&apikey=rX8RhAq6lkDw5OnK
