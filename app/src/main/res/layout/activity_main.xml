@@ -16,14 +16,17 @@
         <EditText
             android:layout_width="0dp"
             android:layout_height="70dp"
-            android:layout_weight="3"
+            android:layout_weight="4"
             android:id="@+id/searchText"
-
-            android:hint="Zoek op artiest ....."/>
+            android:padding="@dimen/tv_padding"
+            android:textColor="@color/colorLightText"
+            android:hint="Zoek op artiest ....."
+            android:textColorHighlight="@color/colorAccent"
+            android:textColorHint="@color/colorLightHint"/>
 
         <Button
             android:layout_width="0dp"
-            android:layout_height="70dp"
+            android:layout_height="60dp"
             android:layout_weight="2"
             android:id="@+id/searchButton"
             android:text="ZOEKEN"/>
@@ -34,7 +37,10 @@
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"/>
+        android:layout_marginTop="0dp"
+        android:background="@color/colorDarkText"
+        app:tabTextColor="@color/colorLightHint"
+        app:tabSelectedTextColor="@color/colorAccent"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,10 +65,10 @@
 
         <android.support.v4.view.ViewPager
             android:id="@+id/container"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:background="@color/colorDarkText"
-            android:layout_gravity="bottom"
-            android:layout_weight="2"/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorDarkText"/>
+
     </LinearLayout>
+
 </LinearLayout>

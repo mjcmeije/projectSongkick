@@ -7,5 +7,6 @@
     <!--<color name="colorPrimaryDark">#000000</color>-->
     <!--<color name="colorAccent">#f23656</color>-->
     <color name="colorLightText">#ffffff</color>
+    <color name="colorLightHint">#acacac</color>
     <color name="colorDarkText">#212121</color>
 </resources>

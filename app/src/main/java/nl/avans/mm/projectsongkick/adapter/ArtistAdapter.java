@@ -79,7 +79,7 @@ import nl.avans.mm.projectsongkick.domain.Artist;
 //	}
 //}
 public class ArtistAdapter extends ArrayAdapter<Artist> {
-	
+
 	private Artist artist;
 	private Context context;
 	
@@ -90,24 +90,24 @@ public class ArtistAdapter extends ArrayAdapter<Artist> {
 	
 	@Override
 	public View getView(int position, View convertViewInitial, ViewGroup parent) {
-		
+
 		// Create artist
 		artist = getItem(position);
 		View convertView = convertViewInitial;
-		
+
 		// Check for existing view
 		if (convertViewInitial == null) {
 			convertViewInitial = LayoutInflater.from(getContext()).inflate(R.layout.artist_listview_row, parent, false);
 		}
-		
+
 		// Select row items
 //		ImageView mediaUrl = (ImageView) convertViewInitial.findViewById(R.id.fragmentListViewRow_IV_mediaUrl);
 //		TextView description = (TextView) convertViewInitial.findViewById(R.id.fragmentListViewRow_TV_description);
 //		TextView status = (TextView) convertViewInitial.findViewById(R.id.fragmentListViewRow_TV_status);
 //		TextView category = (TextView) convertViewInitial.findViewById(R.id.fragmentListViewRow_TV_category);
-		TextView artistName = (TextView) convertViewInitial.findViewById(R.id.listRowTvArtistName);
-		ImageView artistImage = (ImageView) convertViewInitial.findViewById(R.id.listRowIvArtistImage);
-		
+		TextView artistName = (TextView) convertViewInitial.findViewById(R.id.lvRowTvArtistName);
+		ImageView artistImage = (ImageView) convertViewInitial.findViewById(R.id.lvRowIvArtistImage);
+
 		// Get and set content
 		artistName.setText(artist.getName());
 		Picasso.with(getContext()).load(artist.getArtistImageUrl()).into(artistImage);

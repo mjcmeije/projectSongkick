@@ -1,4 +1,4 @@
-package nl.avans.mm.projectsongkick.presentation;
+package nl.avans.mm.projectsongkick.adapter;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
@@ -6,19 +6,23 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import nl.avans.mm.projectsongkick.R;
+import nl.avans.mm.projectsongkick.fragment.ArtistFragment;
+import nl.avans.mm.projectsongkick.fragment.EventFragment;
+import nl.avans.mm.projectsongkick.fragment.LocationFragment;
 
 
-public class MainScreenSectionsPagerAdapter extends FragmentPagerAdapter {
+public class SectionsPagerAdapter extends FragmentPagerAdapter {
 	
 	private Context context;
-	private MainScreenArtistsFragment tab1;
-	private MainScreenLocationsFragment tab2;
-	private MainScreenEventsFragment tab3;
+	private EventFragment tab1;
+	private ArtistFragment tab2;
+	private LocationFragment tab3;
+
 	//================================================================================
 	// Constructors
 	//================================================================================
 	
-	public MainScreenSectionsPagerAdapter(FragmentManager fm, Context context) {
+	public SectionsPagerAdapter(FragmentManager fm, Context context) {
 		super(fm);
 		this.context = context;
 	}
@@ -26,20 +30,20 @@ public class MainScreenSectionsPagerAdapter extends FragmentPagerAdapter {
 	//================================================================================
 	// Accessors
 	//================================================================================
-	
+
 	@Override
 	public Fragment getItem(int position) {
 		switch (position) {
 			case 0:
-				tab1 = new MainScreenArtistsFragment();
+				tab1 = new EventFragment();
 				return tab1;
 			
 			case 1:
-				tab2 = new MainScreenLocationsFragment();
+				tab2 = new ArtistFragment();
 				return tab2;
 			
 			case 2:
-				tab3 = new MainScreenEventsFragment();
+				tab3 = new LocationFragment();
 				return tab3;
 			
 			default:
@@ -51,12 +55,12 @@ public class MainScreenSectionsPagerAdapter extends FragmentPagerAdapter {
 		return tab1;
 	}
 	
-	public MainScreenArtistsFragment getListFragment() {
-		return tab1;
+	public ArtistFragment getArtistFragment() {
+		return tab2;
 	}
 	
-	public MainScreenLocationsFragment getMapFragment() {
-		return tab2;
+	public LocationFragment getMapFragment() {
+		return tab3;
 	}
 	
 
@@ -77,11 +81,11 @@ public class MainScreenSectionsPagerAdapter extends FragmentPagerAdapter {
 	public CharSequence getPageTitle(int position) {
 		switch (position) {
 			case 0:
-				return context.getResources().getString(R.string.homescreen_left_tab);
-			case 1:
-				return context.getResources().getString(R.string.homescreen_right_tab);
-			case 2:
 				return context.getResources().getString(R.string.homescreen_events_tab);
+			case 1:
+				return context.getResources().getString(R.string.homescreen_artist_tab);
+			case 2:
+				return context.getResources().getString(R.string.homescreen_location_tab);
 			default:
 				break;
 		}

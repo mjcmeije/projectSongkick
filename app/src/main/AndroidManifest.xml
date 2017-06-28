@@ -21,6 +21,9 @@
         <activity android:name=".presentation.ArtistActivity"
                   android:configChanges="orientation|screenSize" >
         </activity>
+        <activity android:name=".presentation.EventActivity"
+                  android:configChanges="orientation|screenSize" >
+        </activity>
     </application>
 
 </manifest>

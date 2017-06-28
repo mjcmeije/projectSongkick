@@ -1,4 +1,4 @@
-package nl.avans.mm.projectsongkick.presentation;
+package nl.avans.mm.projectsongkick.fragment;
 
 
 import android.os.Bundle;
@@ -12,10 +12,10 @@ import nl.avans.mm.projectsongkick.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainScreenEventsFragment extends Fragment {
+public class EventFragment extends Fragment {
 	
 	
-	public MainScreenEventsFragment() {
+	public EventFragment() {
 		// Required empty public constructor
 	}
 	
@@ -24,7 +24,7 @@ public class MainScreenEventsFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
-		return inflater.inflate(R.layout.fragment_main_screen_events, container, false);
+		return inflater.inflate(R.layout.event_fragment, container, false);
 	}
 	
 }

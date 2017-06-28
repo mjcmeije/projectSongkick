@@ -16,12 +16,12 @@ import java.net.URLConnection;
 
 import nl.avans.mm.projectsongkick.domain.Artist;
 
-public class ArtistRequest extends AsyncTask<String, Void, String> {
+public class LocationRequest extends AsyncTask<String, Void, String> {
 
-	private Listener listener = null;
+	private ArtistRequest.Listener listener = null;
 	private final String TAG = getClass().getSimpleName();
 
-	public ArtistRequest(Listener listener) {
+	public LocationRequest(ArtistRequest.Listener listener) {
 		this.listener = listener;
 	}
 
@@ -105,7 +105,9 @@ public class ArtistRequest extends AsyncTask<String, Void, String> {
 	}
 
 	public interface Listener {
-		void onArtistAvailable(Artist artist);
+		void onLocationAvailable(Artist artist);
+
+		void noConnectionAvailable();
 	}
 }
 
