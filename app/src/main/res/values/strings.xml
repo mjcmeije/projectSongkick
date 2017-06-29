@@ -2,7 +2,7 @@
     <string name="app_name">Project Songkick</string>
     <string name="homescreen_events_tab">Events</string>
     <string name="homescreen_artist_tab">Artists</string>
-    <string name="homescreen_location_tab">Locations</string>
+    <string name="homescreen_location_tab">My Events</string>
     <string name="lineup">Line-up</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -10,13 +10,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import nl.avans.mm.projectsongkick.R;
-import nl.avans.mm.projectsongkick.adapter.ArtistAdapter;
 import nl.avans.mm.projectsongkick.adapter.LineupAdapter;
 import nl.avans.mm.projectsongkick.api.LineUpRequest;
-import nl.avans.mm.projectsongkick.businesslogic.ArtistManager;
 import nl.avans.mm.projectsongkick.domain.Artist;
 import nl.avans.mm.projectsongkick.domain.Event;
 
@@ -51,7 +48,6 @@ public class EventActivity extends AppCompatActivity implements AdapterView.OnIt
 
 		TextView eventName = (TextView) findViewById(R.id.tvDetailEventName);
 		ListView eventPerformance = (ListView) findViewById(R.id.lvEventPerformance);
-
 
 		lineupAdapter = new LineupAdapter(getApplicationContext(), getLayoutInflater(), eventArtist);
 		eventPerformance.setAdapter(lineupAdapter);

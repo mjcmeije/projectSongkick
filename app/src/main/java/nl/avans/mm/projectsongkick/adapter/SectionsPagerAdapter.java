@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import nl.avans.mm.projectsongkick.R;
 import nl.avans.mm.projectsongkick.fragment.ArtistFragment;
 import nl.avans.mm.projectsongkick.fragment.EventFragment;
-import nl.avans.mm.projectsongkick.fragment.LocationFragment;
+import nl.avans.mm.projectsongkick.fragment.MyEventsFragment;
 
 
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
@@ -16,7 +16,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 	private Context context;
 	private EventFragment tab1;
 	private ArtistFragment tab2;
-	private LocationFragment tab3;
+	private MyEventsFragment tab3;
 
 	//================================================================================
 	// Constructors
@@ -43,7 +43,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 				return tab2;
 			
 			case 2:
-				tab3 = new LocationFragment();
+				tab3 = new MyEventsFragment();
 				return tab3;
 			
 			default:
@@ -59,7 +59,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 		return tab2;
 	}
 	
-	public LocationFragment getMapFragment() {
+	public MyEventsFragment getMapFragment() {
 		return tab3;
 	}
 	
