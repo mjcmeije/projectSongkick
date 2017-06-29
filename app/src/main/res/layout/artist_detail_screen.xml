@@ -4,6 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorDarkText"
     android:padding="@dimen/layout_padding">
 
     <ImageView
@@ -17,6 +18,14 @@
         android:layout_below="@id/tvDetailArtistImage"
         android:padding="@dimen/tv_padding"
         android:textSize="@dimen/detail_artist_name"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textColor="@color/colorLightText"/>
+
+    <ListView
+        android:id="@+id/lvArtistEvent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/tvDetailArtistName"/>
 
 </RelativeLayout>

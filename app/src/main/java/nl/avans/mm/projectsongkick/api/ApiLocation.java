@@ -1,5 +1,6 @@
 package nl.avans.mm.projectsongkick.api;
 
+
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -15,22 +16,23 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import nl.avans.mm.projectsongkick.domain.Artist;
+import nl.avans.mm.projectsongkick.domain.Location;
 
-public class ArtistRequest extends AsyncTask<String, Void, String> {
-
+public class ApiLocation extends AsyncTask<String, Void, String> {
+	
 	private Listener listener = null;
 	private final String TAG = getClass().getSimpleName();
-
-	public ArtistRequest(Listener listener) {
+	
+	public ApiLocation(Listener listener) {
 		this.listener = listener;
 	}
-
+		
 	@Override
 	protected String doInBackground(String... params) {
-
+		
 		BufferedReader reader = null;
 		String response = "";
-
+		
 		try {
 			URL url = new URL(params[0]);
 			URLConnection connection = url.openConnection();
@@ -59,7 +61,7 @@ public class ArtistRequest extends AsyncTask<String, Void, String> {
 		}
 		return response;
 	}
-
+	
 	@Override
 	protected void onPostExecute(String response) {
 		Log.i(TAG, response);
@@ -67,45 +69,53 @@ public class ArtistRequest extends AsyncTask<String, Void, String> {
 //			listener.noConnectionAvailable();
 			return;
 		}
-
+		
 		JSONObject jsonObject;
 		try {
 			// Top level json object
 			jsonObject = new JSONObject(response);
-
+			
 			// Get resultsPage object
 			JSONObject resultsPage = jsonObject.getJSONObject("resultsPage");
-
+			
 			// Get results object
 			JSONObject results = resultsPage.getJSONObject("results");
-
+			
 			// Get artist array
-			JSONArray artistArray = results.getJSONArray("artist");
-
+			JSONArray locationsearch = results.getJSONArray("location");
+			
+			
+			
 			// For each artist in artist array
-			for(int idx = 0; idx < artistArray.length(); idx++) {
+			for(int idx = 0; idx < locationsearch.length(); idx++) {
 				// Artist object in array
-				JSONObject artistObject = artistArray.getJSONObject(idx);
-
-				String displayName = artistObject.getString("displayName");
-				String artistId = artistObject.getString("id");
-
+				JSONObject locationObject = locationsearch.getJSONObject(idx);
+				
+				// Get results object
+				JSONObject city = locationObject.getJSONObject("city");
+				
+				String displayName = city.getString("displayName");
+//				String artistId = artistObject.getString("id");
+				
+				JSONObject displayCountryName = city.getJSONObject("country");
+				String countryName = displayCountryName.getString("displayName");
+				
 				// Create new Artist
-				Artist artist = new Artist();
-
-				artist.setName(displayName);
-				artist.setArtistId(artistId);
-
+				Location location = new Location();
+				
+				location.setLocationName(displayName);
+				location.setLocationCountryName(countryName);
+//				artist.setArtistId(artistId);
+				
 				// Callback
-				listener.onArtistAvailable(artist);
+				listener.onLocationAvailable(location);
 			}
 		} catch (JSONException e) {
 			Log.e("ERR", e.getLocalizedMessage());
 		}
 	}
-
+	
 	public interface Listener {
-		void onArtistAvailable(Artist artist);
+		void onLocationAvailable(Location location);
 	}
 }
-

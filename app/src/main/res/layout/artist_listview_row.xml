@@ -7,16 +7,16 @@
     android:padding="@dimen/layout_padding">
 
     <ImageView
-        android:id="@+id/listRowIvArtistImage"
+        android:id="@+id/lvRowIvArtistImage"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:padding="@dimen/tv_padding"/>
 
     <TextView
-        android:id="@+id/listRowTvArtistName"
+        android:id="@+id/lvRowTvArtistName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/listRowIvArtistImage"
+        android:layout_toEndOf="@+id/lvRowIvArtistImage"
         android:textSize="@dimen/listview_artist_name"
         android:textStyle="bold"
         android:padding="@dimen/tv_padding"

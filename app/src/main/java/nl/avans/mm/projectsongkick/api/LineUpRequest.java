@@ -16,12 +16,12 @@ import java.net.URLConnection;
 
 import nl.avans.mm.projectsongkick.domain.Artist;
 
-public class ArtistRequest extends AsyncTask<String, Void, String> {
+public class LineUpRequest extends AsyncTask<String, Void, String> {
 
 	private Listener listener = null;
 	private final String TAG = getClass().getSimpleName();
 
-	public ArtistRequest(Listener listener) {
+	public LineUpRequest(Listener listener) {
 		this.listener = listener;
 	}
 
@@ -80,15 +80,17 @@ public class ArtistRequest extends AsyncTask<String, Void, String> {
 			JSONObject results = resultsPage.getJSONObject("results");
 
 			// Get artist array
-			JSONArray artistArray = results.getJSONArray("artist");
+			JSONObject event = results.getJSONObject("event");
+
+			JSONArray performanceArray = event.getJSONArray("performance");
 
 			// For each artist in artist array
-			for(int idx = 0; idx < artistArray.length(); idx++) {
+			for(int idx = 0; idx < performanceArray.length(); idx++) {
 				// Artist object in array
-				JSONObject artistObject = artistArray.getJSONObject(idx);
+				JSONObject performanceObject = performanceArray.getJSONObject(idx);
 
-				String displayName = artistObject.getString("displayName");
-				String artistId = artistObject.getString("id");
+				String displayName = performanceObject.getJSONObject("artist").getString("displayName");
+				String artistId = performanceObject.getJSONObject("artist").getString("id");
 
 				// Create new Artist
 				Artist artist = new Artist();
@@ -96,8 +98,10 @@ public class ArtistRequest extends AsyncTask<String, Void, String> {
 				artist.setName(displayName);
 				artist.setArtistId(artistId);
 
+				Log.i(TAG, displayName + " " + artistId);
+
 				// Callback
-				listener.onArtistAvailable(artist);
+				listener.onEventPerformanceAvailable(artist);
 			}
 		} catch (JSONException e) {
 			Log.e("ERR", e.getLocalizedMessage());
@@ -105,7 +109,7 @@ public class ArtistRequest extends AsyncTask<String, Void, String> {
 	}
 
 	public interface Listener {
-		void onArtistAvailable(Artist artist);
+		void onEventPerformanceAvailable(Artist artist);
 	}
 }
 

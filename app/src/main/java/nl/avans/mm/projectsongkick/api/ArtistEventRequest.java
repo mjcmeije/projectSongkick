@@ -14,14 +14,18 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-import nl.avans.mm.projectsongkick.domain.Artist;
+import nl.avans.mm.projectsongkick.domain.Event;
 
-public class ArtistRequest extends AsyncTask<String, Void, String> {
+/**
+ * Created by qsl on 28/06/2017.
+ */
+
+public class ArtistEventRequest extends AsyncTask<String, Void, String> {
 
 	private Listener listener = null;
 	private final String TAG = getClass().getSimpleName();
 
-	public ArtistRequest(Listener listener) {
+	public ArtistEventRequest(Listener listener) {
 		this.listener = listener;
 	}
 
@@ -80,24 +84,28 @@ public class ArtistRequest extends AsyncTask<String, Void, String> {
 			JSONObject results = resultsPage.getJSONObject("results");
 
 			// Get artist array
-			JSONArray artistArray = results.getJSONArray("artist");
+			JSONArray eventArray = results.getJSONArray("event");
 
 			// For each artist in artist array
-			for(int idx = 0; idx < artistArray.length(); idx++) {
+			for(int idx = 0; idx < eventArray.length(); idx++) {
 				// Artist object in array
-				JSONObject artistObject = artistArray.getJSONObject(idx);
+				JSONObject eventObject = eventArray.getJSONObject(idx);
 
-				String displayName = artistObject.getString("displayName");
-				String artistId = artistObject.getString("id");
+				String displayName = eventObject.getString("displayName");
+				String eventId = eventObject.getString("id");
+				String eventStartDate = eventObject.getJSONObject("start").getString("date");
 
 				// Create new Artist
-				Artist artist = new Artist();
+				Event event = new Event();
 
-				artist.setName(displayName);
-				artist.setArtistId(artistId);
+				event.setDisplayName(displayName);
+				event.setEventId(eventId);
+				event.setStartDate(eventStartDate);
+
+				Log.i(TAG, displayName + " " + eventId + " " + eventStartDate);
 
 				// Callback
-				listener.onArtistAvailable(artist);
+				listener.onArtistEventAvailable(event);
 			}
 		} catch (JSONException e) {
 			Log.e("ERR", e.getLocalizedMessage());
@@ -105,7 +113,6 @@ public class ArtistRequest extends AsyncTask<String, Void, String> {
 	}
 
 	public interface Listener {
-		void onArtistAvailable(Artist artist);
+		void onArtistEventAvailable(Event event);
 	}
 }
-
