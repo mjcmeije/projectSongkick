@@ -19,11 +19,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //	private ListView eventsListView = null;
 //	private ArrayList<Event> events = new ArrayList<>();
 //	private EventAdapter eventAdapter = null;
-	public static final String ARTIST = "artist";
 
 	public static EditText searchBox = null;
 	private Button searchButton;
-	public String query;
 	private SectionsPagerAdapter sectionsPagerAdapter;
 	
 	@Override
