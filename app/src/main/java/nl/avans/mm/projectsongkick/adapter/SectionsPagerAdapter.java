@@ -51,7 +51,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 		}
 	}
 	
-	public Fragment getTab1() {
+	public EventFragment getEventFragment() {
 		return tab1;
 	}
 	
@@ -63,6 +63,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 		return tab3;
 	}
 	
+	public Fragment getTab1() {
+		return tab1;
+	}
 
 	public Fragment getTab2() {
 		return tab2;

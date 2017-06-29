@@ -91,6 +91,9 @@ public class ApiLocation extends AsyncTask<String, Void, String> {
 				// Artist object in array
 				JSONObject locationObject = locationsearch.getJSONObject(idx);
 				
+				JSONObject metroArea = locationObject.getJSONObject("metroArea");
+				String id = metroArea.getString("id");
+				
 				// Get results object
 				JSONObject city = locationObject.getJSONObject("city");
 				
@@ -103,6 +106,7 @@ public class ApiLocation extends AsyncTask<String, Void, String> {
 				// Create new Artist
 				Location location = new Location();
 				
+				location.setLocationID(id);
 				location.setLocationName(displayName);
 				location.setLocationCountryName(countryName);
 //				artist.setArtistId(artistId);

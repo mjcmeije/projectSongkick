@@ -11,6 +11,7 @@ import android.widget.EditText;
 
 import nl.avans.mm.projectsongkick.R;
 import nl.avans.mm.projectsongkick.adapter.SectionsPagerAdapter;
+import nl.avans.mm.projectsongkick.fragment.EventFragment;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 	
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 		Log.i(TAG, "Tab: " + tabLayout.getSelectedTabPosition());
 		tabLayout.setupWithViewPager(viewPager);
-
+		
 //		getEvents();
 //		eventsListView.setOnItemClickListener(this);
 	}
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //		String[] urls = new String[]{"http://37.34.59.50/breda/CitySDK/requests.format?service_request_id=" + serviceRequestId};
 //		apiHomeScreen.execute(urls);
 //	}
-
+	
 	@Override
 	public void onClick(View v) {
 		sectionsPagerAdapter.getArtistFragment().getArtist();
