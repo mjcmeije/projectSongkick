@@ -1,6 +1,7 @@
 package nl.avans.mm.projectsongkick.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -24,12 +26,17 @@ import nl.avans.mm.projectsongkick.businesslogic.EventManager;
 import nl.avans.mm.projectsongkick.domain.Artist;
 import nl.avans.mm.projectsongkick.domain.Event;
 import nl.avans.mm.projectsongkick.domain.Location;
+import nl.avans.mm.projectsongkick.presentation.ArtistActivity;
+import nl.avans.mm.projectsongkick.presentation.EventActivity;
 import nl.avans.mm.projectsongkick.presentation.MainActivity;
 
+import static nl.avans.mm.projectsongkick.presentation.ArtistActivity.EXTRA_EVENT;
 
-public class EventFragment extends Fragment implements ApiEvents.Listener {
+
+public class EventFragment extends Fragment implements ApiEvents.Listener, AdapterView.OnItemClickListener {
 	
 	public static final String EXTRA_LOCATION = "LOCATION";
+	public static final String EXTRA_EVENT = "EVENT";
 	private final String TAG = getClass().getSimpleName();
 	private String query;
 	private StandardEventAdapter standardEventAdapter;
@@ -46,7 +53,7 @@ public class EventFragment extends Fragment implements ApiEvents.Listener {
 		
 		standardEventAdapter = new StandardEventAdapter(getContext(), eventQuery.getEvent()); //fragmentListView_LV_reportsList
 		eventsListView.setAdapter(standardEventAdapter);
-//		eventsListView.setOnItemClickListener(this);
+		eventsListView.setOnItemClickListener(this);
 //		addArtistsToList();
 		getEvent();
 		return rootView;
@@ -84,4 +91,12 @@ public class EventFragment extends Fragment implements ApiEvents.Listener {
 //		toast.show();
 	}
 	
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		Event event = eventQuery.getEvent().get(position);
+		Log.i(TAG, "Position: " + position + "Event: " + event.getDisplayName());
+		Intent intent = new Intent(getContext(), EventActivity.class);
+		intent.putExtra(EXTRA_EVENT, event);
+		startActivity(intent);
+	}
 }

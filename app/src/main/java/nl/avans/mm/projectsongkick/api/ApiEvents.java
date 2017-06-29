@@ -85,13 +85,18 @@ public class ApiEvents extends AsyncTask<String, Void, String> {
 					JSONObject thisEvent = event1.getJSONObject(idx);
 					
 					String displayName = thisEvent.getString("displayName");
+					String id = thisEvent.getString("id");
+					
+					JSONObject start = thisEvent.getJSONObject("start");
+					String startdate = start.getString("date");
+					
 					
 					// Create new Event
 					Event event = new Event();
 					
 					event.setDisplayName(displayName);
-					
-
+					event.setStartDate(startdate);
+					event.setEventId(id);
 					
 					// Callback
 					listener.onEventAvailable(event);

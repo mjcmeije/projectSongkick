@@ -8,6 +8,7 @@ public class Event implements Serializable {
 	private String displayName;
 	private String eventId;
 	private String startDate;
+	private String endDate;
 	private String type;
 	
 	public String getDisplayName() {
@@ -32,6 +33,14 @@ public class Event implements Serializable {
 
 	public void setStartDate(String startDate) {
 		this.startDate = startDate;
+	}
+	
+	public String getEndDate() {
+		return endDate;
+	}
+	
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
 	
 	public String getType() {

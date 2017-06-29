@@ -42,13 +42,15 @@ public class StandardEventAdapter extends ArrayAdapter<Event> {
 		// Select row items
 //		ImageView mediaUrl = (ImageView) convertViewInitial.findViewById(R.id.fragmentListViewRow_IV_mediaUrl);
 //		TextView description = (TextView) convertViewInitial.findViewById(R.id.fragmentListViewRow_TV_description);
-//		TextView status = (TextView) convertViewInitial.findViewById(R.id.fragmentListViewRow_TV_status);
-//		TextView category = (TextView) convertViewInitial.findViewById(R.id.fragmentListViewRow_TV_category);
+//		TextView endDate = (TextView) convertViewInitial.findViewById(R.id.tvEventEndDate);
+		TextView startDate = (TextView) convertViewInitial.findViewById(R.id.tvEventStartDate);
 		TextView eventName = (TextView) convertViewInitial.findViewById(R.id.tvEventName);
 //		ImageView artistImage = (ImageView) convertViewInitial.findViewById(R.id.lvRowIvArtistImage);
 		
 		// Get and set content
 		eventName.setText(event.getDisplayName());
+		startDate.setText("Startdatum: " + event.getStartDate());
+		
 //		Picasso.with(getContext()).load(artist.getArtistImageUrl()).into(artistImage);
 		// Return view
 		return convertViewInitial;
