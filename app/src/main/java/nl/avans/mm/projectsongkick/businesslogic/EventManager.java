@@ -11,13 +11,13 @@ import nl.avans.mm.projectsongkick.domain.Event;
 
 public class EventManager {
 
-	private static List<Event> events = new ArrayList<>();
+	private static ArrayList<Event> events = new ArrayList<>();
 
 	public static void addEvent(Event event) {
 		events.add(event);
 	}
 
-	public static List<Event> getEvent() {
+	public static ArrayList<Event> getEvent() {
 		return events;
 	}
 

@@ -87,7 +87,8 @@ public class LocationAdapter extends BaseAdapter {
 		// En nu de viewHolder vullen met de juiste product
 		Location location = (Location) mLocationArrayList.get(position);
 		
-		viewHolder.cityName.setText(location.getLocationName() + ", " +(location.getLocationCountryName()));
+		viewHolder.cityName.setText(location.getLocationName() + ", " +(location.getLocationCountryName()) + ", " +
+		location.getLocationID());
 //		viewHolder.countryName.setText(location.getLocationCountryName());
 //		viewHolder.summary.setText(product.getSummary());
 //		new ImageLoader(viewHolder.imageView).execute(product.getSmallImageUrl());
