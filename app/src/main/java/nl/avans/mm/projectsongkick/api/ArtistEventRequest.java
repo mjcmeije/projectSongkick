@@ -91,11 +91,18 @@ public class ArtistEventRequest extends AsyncTask<String, Void, String> {
 				// Artist object in array
 				JSONObject eventObject = eventArray.getJSONObject(idx);
 
-				String displayName = eventObject.getString("displayName");
+				String displayName = "";
+
+				displayName = eventObject.getString("displayName");
+
+				if (displayName.length() >= 45) {
+					displayName = eventObject.getJSONObject("venue").getString("displayName");
+				}
+
 				String eventId = eventObject.getString("id");
 				String eventStartDate = eventObject.getJSONObject("start").getString("date");
 
-				// Create new Artist
+				// Create new Event
 				Event event = new Event();
 
 				event.setDisplayName(displayName);

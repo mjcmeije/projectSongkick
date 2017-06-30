@@ -45,12 +45,13 @@ public class ArtistActivity extends AppCompatActivity implements AdapterView.OnI
 
 		ARTIST_NAME = artist.getName();
 		ARTIST_ID = artist.getArtistId();
+		setTitle(ARTIST_NAME);
 
 		eventList = new ArrayList<>();
 
-		TextView artistTv = (TextView) findViewById(R.id.tvDetailArtistName);
 		ImageView artistImage = (ImageView) findViewById(R.id.tvDetailArtistImage);
-		artistTv.setText(artist.getName());
+		TextView artistCalendarTv = (TextView) findViewById(R.id.tvDetailArtistCalendar);
+		artistCalendarTv.setText(R.string.artist_events);
 		Picasso.with(getApplicationContext()).load(artist.getArtistImageUrl()).into(artistImage);
 
 		ListView artistEventListView;
@@ -64,7 +65,7 @@ public class ArtistActivity extends AppCompatActivity implements AdapterView.OnI
 
 	public void getArtistEvent() {
 		artistEventRequest = new ArtistEventRequest(this);
-		String[] urls = {"http://api.songkick.com/api/3.0/artists/"+ARTIST_ID+"/calendar.json?apikey=rX8RhAq6lkDw5OnK"};
+		String[] urls = {"http://api.songkick.com/api/3.0/events.json?apikey=rX8RhAq6lkDw5OnK&artist_name="+ARTIST_NAME};
 		artistEventRequest.execute(urls);
 	}
 
